@@ -6,7 +6,7 @@ webpack plugin for [vConsole](https://github.com/WechatFE/vConsole)
 ## 安装
 
 ```bash
-npm install vconsole-webpack-plugin --save-dev
+npm install vconsole-webpack-plugin2 --save-dev
 ```
 
 ## 使用
@@ -15,7 +15,7 @@ npm install vconsole-webpack-plugin --save-dev
 
 ```js
 // 引入插件
-var vConsolePlugin = require('vconsole-webpack-plugin'); 
+var vConsolePlugin = require('vconsole-webpack-plugin2'); 
 
 module.exports = {
     ...
@@ -46,7 +46,7 @@ scripts: {
 
 ```js
 // 引入插件
-var vConsolePlugin = require('vconsole-webpack-plugin'); 
+var vConsolePlugin = require('vconsole-webpack-plugin2'); 
 
 // 接收运行参数
 const argv = require('yargs')
