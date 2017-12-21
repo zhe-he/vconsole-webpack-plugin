@@ -23,7 +23,7 @@ function vConsolePlugin(options) {
 vConsolePlugin.prototype.apply = function(compiler) {
     const enable = this.options.enable;
     const _root = module.paths.find(path => fs.existsSync(path));
-    const pathVconsole = path.join(_root, '/vconsole/dist/vconsole.min.js');
+    const pathVconsole = path.join(_root, '/vconsole2/dist/vconsole.min.js');
     const that = this;
 
     compiler.plugin('entry-option', function() {
