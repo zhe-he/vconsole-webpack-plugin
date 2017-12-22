@@ -1,6 +1,6 @@
 {
   "name": "vconsole-webpack-plugin2",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "webpack plugin for vConsole",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/zhe-he/vconsole-webpack-plugin#readme",
   "dependencies": {
-    "vconsole2": "^1.0.1"
+    "vconsole2": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^3.3.0",
