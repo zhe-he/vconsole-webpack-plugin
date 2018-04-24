@@ -4,9 +4,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 单独打包CSS
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Html文件处理
-const vConsolePlugin = require('../../index.js'); 
+const vConsolePlugin = require('../../index.js');
 
 
 // 接收运行参数
@@ -16,7 +15,7 @@ const argv = require('yargs')
     
 module.exports = {
   entry: {
-    index: './src/index.js'
+    index1: ['./src/index.js', './src/a.js', './src/b.js']
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -24,16 +23,9 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: "[id].chunk.js?[hash:8]"
   },
+  mode: 'development', // 'production'
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name:'common',
-    //   filename:"common.js"
-    // }), // 分析以下模块的共用代码,单独打一个包到common.js
-
     new vConsolePlugin({enable: !!argv.debug}),
-
-    // 单独打包CSS
-    new ExtractTextPlugin('[name].css', {allChunks: true}),
 
     /**
      * HTML文件编译，自动引用JS/CSS
@@ -45,39 +37,22 @@ module.exports = {
      * hash
      */
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'index1.html',
       template: 'src/index.html',
-      chunks: ['index'],
+      chunks: ['index1'],
       hash: true
     })
   ],
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/, loader: 'babel-loader',
         exclude: /(node_modules|libs)/
       },
       // CSS,LESS打包进JS
-      // { test: /\.css$/, loader: 'style-loader!css-loader' },
-      // { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' }, // use ! to chain loaders
-      // CSS,LESS单独打包
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader']
-        })
-      },
-      {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'less-loader']
-        })
-      },
-
-      // { test: /\.tpl$/, loader: 'ejs'},
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' }, // use ! to chain loaders
       {
         test: /\.(png|jpg|gif)$/,
         loader: 'url-loader',

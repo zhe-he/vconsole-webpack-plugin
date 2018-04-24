@@ -4,7 +4,3 @@
 
 console.log('hello world');
 console.error('hi devil');
-
-// var VConsole = require('vconsole');
-// new VConsole();
-// 
